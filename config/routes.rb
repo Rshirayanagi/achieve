@@ -6,15 +6,17 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
-  end  
-  
+  end
+
+  resources :poems, only: [:index, :show]
+
   resources :contacts, only: [:new, :create] do
     collection do
       post :confirm
     end
   end
-  
-  root 'top#index'  
+
+  root 'top#index'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
